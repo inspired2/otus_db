@@ -4,7 +4,7 @@
    add user to group docker:
    $ sudo usermod -aG docker $USER
    prepare folder for pgadmin. From project's root folder:
-   $ mkdir ./db_data/pgadmin
+   $ mkdir -p ./db_data/pgadmin
    $ sudo chmod 0777 ./db_data/pgadmin
    
 2. run:
@@ -22,7 +22,6 @@
 	port: 5432
 	username: admin
 	password: root
-8. create empty db otus_store
 
 
 # Bacup&Restore:
@@ -31,4 +30,4 @@
 $ docker exec db_instance pg_dumpall -l otus_store -U admin > ./sql_dump/dbdumpfile.sql
 
 ## Restore from dbdumpfile.sql:
-$ cat ./dbdumpfile.sql | docker exec -i db_instance psql -U admin otus_store
+$ cat ./sql_dump/dbdumpfile.sql | docker exec -i db_instance psql -U admin otus_store
