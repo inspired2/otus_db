@@ -6,6 +6,10 @@
 * prepare folder for pgadmin. From project's root folder:
 	* $ mkdir -p ./db_data/pgadmin
 	* $ sudo chmod 0777 ./db_data/pgadmin
+* prepare folders for wal archive and physical backup
+	* $ mkdir ./db_archive
+	* $ mkdir ./db_backup
+	* $ sudo chown 70:root ./db_archive && sudo chown 70:root ./db_backup
 
 * $ docker compose up
 
@@ -38,27 +42,27 @@ $ docker exec -it db_instance /bin/bash -c 'pg_basebackup -U admin -D /db_backup
 $ cat ./sql_dump/dbdumpfile.sql | docker exec -i db_instance psql -U admin otus_store
 
 ## Restore from physical (replication process):
-1. Stop postgresql:
-$ docker compose down
+* Stop postgresql:
+	* $ docker compose down
 
-2. Delete db_data:
-$ sudo rm -R ./db_data
+* Delete db_data:
+	* $ sudo rm -R ./db_data
 
-3. Create db_data:
-$ mkdir ./db_data
+* Create db_data:
+	* $ mkdir ./db_data
 
-4. Copy physical backup files to db_data:
-$ sudo cp -a ./db_backup/. ./db_data
+* Copy physical backup files to db_data:
+	* $ sudo cp -a ./db_backup/. ./db_data
 
-5. Create singal file for postgres to start recovery:
-$ sudo touch ./db_data/recovery.signal
+* Create singal file for postgres to start recovery:
+	* $ sudo touch ./db_data/recovery.signal
 
-6. Change db_data owner and permissions:
-$ sudo chown -R 70:root ./db_data
-$ sudo chmod -R 700 ./db_data
+* Change db_data owner and permissions:
+	* $ sudo chown -R 70:root ./db_data
+	* $ sudo chmod -R 700 ./db_data
 
-7. Start potgres:
-$ docker compose up
+* Start potgres:
+	* $ docker compose up
 
 
 
