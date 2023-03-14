@@ -1,28 +1,28 @@
 ### UBUNTU SETUP
 # Initialization:
-1. install docker & docker compose
-   add user to group docker:
-   $ sudo usermod -aG docker $USER
---   prepare folder for pgadmin. From project's root folder:
---  $ mkdir -p ./db_data/pgadmin
---  $ sudo chmod 0777 ./db_data/pgadmin
+* docker & docker compose
+	* add user to group docker:
+	* $ sudo usermod -aG docker $USER
+* prepare folder for pgadmin. From project's root folder:
+	* $ mkdir -p ./db_data/pgadmin
+	* $ sudo chmod 0777 ./db_data/pgadmin
 
-2. $ docker compose up
+* $ docker compose up
 
-3. find ip address of db_instance container and pgadmin container ($ ip addr) 
+* find out ip address of db_instance container and pgadmin container ($ ip addr) 
 
-4. use internet browser to connect to pgadmin on port 5050:
-   for example: 
-   http://172.17.0.1:5050
+* use internet browser to connect to pgadmin on port 5050:
+	* for example: 
+	* http://172.17.0.1:5050
    
-6. login to pgadmin using credentials:
-	user: otus@test.ru
-	pass: root
-7. register server:	
-	hostname: db_instance container ip address
-	port: 5432
-	username: admin
-	password: root
+* login to pgadmin using credentials:
+	* user: otus@test.ru
+	* pass: root
+* register server:	
+	* hostname: db_instance container ip address
+	* port: 5432
+	* username: admin
+	* password: root
 
 
 # Bacup&Restore:
