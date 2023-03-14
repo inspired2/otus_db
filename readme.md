@@ -30,14 +30,14 @@
 ## Backup using pg_dumpall:
 $ docker exec db_instance pg_dumpall -l otus_store -U admin > ./sql_dump/dbdumpfile.sql
 
-## Physical backup:
+## Physical backup (can be used for replication):
 $ docker exec -it db_instance /bin/bash -c 'pg_basebackup -U admin -D /db_backup'
 
 
 ## Restore from dbdumpfile.sql:
 $ cat ./sql_dump/dbdumpfile.sql | docker exec -i db_instance psql -U admin otus_store
 
-## Restore from physical:
+## Restore from physical (replication process):
 1. Stop postgresql:
 $ docker compose down
 
